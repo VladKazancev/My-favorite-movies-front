@@ -1,0 +1,9 @@
+{
+  "loginPage": {
+    "emailHolder": "Электронный адрес",
+    "passwordHolder": "Пароль",
+    "submitLabel": "Войти",
+    "unknownUser": "Пользователь не зарегистрирован!",
+    "wrongPassword": "Неверный пароль!"
+  }
+}

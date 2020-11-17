@@ -1,0 +1,9 @@
+{
+  "loginPage": {
+    "emailHolder": "Email",
+    "passwordHolder": "Password",
+    "submitLabel": "Log In",
+    "unknownUser": "User is not registered!",
+    "wrongPassword": "Wrong password!"
+  }
+}
