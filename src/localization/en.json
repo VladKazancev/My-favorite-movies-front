@@ -5,5 +5,13 @@
     "submitLabel": "Log In",
     "unknownUser": "User is not registered!",
     "wrongPassword": "Wrong password!"
+  },
+  "mainPage": {
+    "main": "Main page"
+  },
+  "other": {
+    "title": "My Favorite Movies",
+    "content": "Movies",
+    "noscript": "You need to enable JavaScript to run this app."
   }
 }

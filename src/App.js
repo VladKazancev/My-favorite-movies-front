@@ -4,16 +4,13 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import "./localization";
 import "./styles/tailwindcss.css";
+import { addUsers, htmlLocalization } from "./utils";
+import { useTranslation } from "react-i18next";
 
 export default function App() {
-  if (!localStorage.getItem("users"))
-    localStorage.setItem(
-      "users",
-      JSON.stringify([
-        { email: "Kazancev@yandex.ru", password: "password" },
-        { email: "Database@mail.ru", password: "password1" },
-      ])
-    );
+  const { t } = useTranslation("other");
+  addUsers();
+  htmlLocalization(t);
   return (
     <BrowserRouter>
       <Switch>
