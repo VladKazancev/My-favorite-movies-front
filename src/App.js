@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import "./localization";
+import "./styles/tailwindcss.css";
+import { addUsers, htmlLocalization } from "./utils";
+import { useTranslation } from "react-i18next";
 
-function App() {
+export default function App() {
+  const { t } = useTranslation("other");
+  addUsers();
+  htmlLocalization(t);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={LoginPage} />
+        <Route path="/main" component={MainPage} />
+      </Switch>
+    </BrowserRouter>
   );
 }
-
-export default App;
