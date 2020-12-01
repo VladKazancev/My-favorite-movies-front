@@ -7,11 +7,39 @@
     "wrongPassword": "Wrong password!"
   },
   "mainPage": {
-    "main": "Main page"
+    "tagsCloudTitle": "Select your favorite genres",
+    "moviesPanelTitle": "Your favorite movies",
+    "addButtonText": "Add"
   },
   "other": {
     "title": "My Favorite Movies",
     "content": "Movies",
     "noscript": "You need to enable JavaScript to run this app."
+  },
+  "genres": {
+    "Action": "Action",
+    "Adventure": "Adventure",
+    "Animation": "Animation",
+    "Comedy": "Comedy",
+    "Crime": "Crime",
+    "Documentary": "Documentary",
+    "Drama": "Drama",
+    "Family": "Family",
+    "Fantasy": "Fantasy",
+    "History": "History",
+    "Horror": "Horror",
+    "Music": "Music",
+    "Mystery": "Mystery",
+    "Romance": "Romance",
+    "Science Fiction": "Science Fiction",
+    "TV Movie": "TV Movie",
+    "Thriller": "Thriller",
+    "War": "War",
+    "Western": "Western"
+  },
+  "moviesInfo": {
+    "releaseDate": "Release date:",
+    "rating": "Rating:",
+    "production_companies": "Production companies:"
   }
 }

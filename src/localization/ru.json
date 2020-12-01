@@ -7,11 +7,41 @@
     "wrongPassword": "Неверный пароль!"
   },
   "mainPage": {
-    "main": "Главная страница"
+    "tagsCloudTitle": "Выберите ваши любимые жанры",
+    "moviesPanelTitle": "Ваши любимые фильмы",
+    "addButtonText": "Добавить"
   },
   "other": {
     "title": "Мои Любимые Фильмы",
     "content": "Фильмы",
     "noscript": "Для запуска данного приложения вам нужно включить JavaScript."
+  },
+  "genres": {
+    "main": "Главная страница",
+    "tagsCloudTitle": "Выберите ваши любимые жанры",
+    "Action": "Боевик",
+    "Adventure": "Приключения",
+    "Animation": "Мультфильм",
+    "Comedy": "Комедия",
+    "Crime": "Криминал",
+    "Documentary": "Документальный",
+    "Drama": "Драма",
+    "Family": "Семейный",
+    "Fantasy": "Фэнтези",
+    "History": "История",
+    "Horror": "Ужасы",
+    "Music": "Музыка",
+    "Mystery": "Детектив",
+    "Romance": "Мелодрама",
+    "Science Fiction": "Фантастика",
+    "TV Movie": "Телевизионный фильм",
+    "Thriller": "Триллер",
+    "War": "Военный",
+    "Western": "Вестерн"
+  },
+  "moviesInfo": {
+    "releaseDate": "Дата выхода:",
+    "rating": "Рейтинг:",
+    "production_companies": "Компании-разработчики:"
   }
 }
