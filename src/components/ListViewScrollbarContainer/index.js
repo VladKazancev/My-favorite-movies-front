@@ -2,7 +2,7 @@ import React from "react";
 import { Scrollbar } from "react-scrollbars-custom";
 import { useTranslation } from "react-i18next";
 import DisplayMovieInfoHelper from "../DisplayMovieInfoHelper";
-import { ucFirst } from "../../utils";
+import { ucFirst } from "utils";
 
 export default function ListViewScrollbarContainer(props) {
   const { t } = useTranslation("moviesInfo");

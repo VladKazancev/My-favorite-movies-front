@@ -1,4 +1,4 @@
-import { tmdbURL } from "./consts";
+import { TMDB_URL } from "consts";
 
 const key = require("./api.json").API_KEY;
 
@@ -41,13 +41,13 @@ export function addUsers() {
           email: "Kazancev@yandex.ru",
           password: "password",
           favoriteGenres: [],
-          favoriteMovies: [],
+          favoriteMovies: {},
         },
         {
           email: "Database@mail.ru",
           password: "password1",
           favoriteGenres: [],
-          favoriteMovies: [],
+          favoriteMovies: {},
         },
       ])
     );
@@ -56,7 +56,7 @@ export function addUsers() {
 
 export async function getGenres(language) {
   const URL = [
-    tmdbURL,
+    TMDB_URL,
     "genre/movie/list?api_key=",
     key,
     "&language=",
@@ -79,20 +79,19 @@ function setUserData(key, value) {
 }
 
 export async function addFavoriteMovies() {
+  const favoriteMovies = {};
   let popularMovies = await getPopularMovies();
-  const favoriteMovies = popularMovies.results.map((current) => ({
-    id: current.id,
-    isViewed: false,
-  }));
+  popularMovies.results.forEach((current) => {
+    favoriteMovies[current.id] = false;
+  });
   setUserData("favoriteMovies", favoriteMovies);
   return favoriteMovies;
 }
 
-export function markAsViewed(favoriteMovies, id) {
-  const updatedMovies = favoriteMovies.map((current) => {
-    if (current.id === Number(id)) current.isViewed = !current.isViewed;
-    return current;
-  });
+export function setFavoriteMoviesHelper(favoriteMovies, id, deleteMovie) {
+  const updatedMovies = Object.assign({}, favoriteMovies);
+  if (deleteMovie) delete updatedMovies[id];
+  else updatedMovies[id] = !updatedMovies[id];
   setUserData("favoriteMovies", updatedMovies);
   return updatedMovies;
 }
@@ -104,17 +103,9 @@ export function setFavoriteGenres(genre, isFavorite) {
   setUserData("favoriteGenres", favoriteGenres);
 }
 
-export function deleteFavoriteMovie(favoriteMovies, targetValue) {
-  const updatedMovies = favoriteMovies.filter(
-    (current) => current.id !== Number(targetValue)
-  );
-  setUserData("favoriteMovies", updatedMovies);
-  return updatedMovies;
-}
-
 async function getPopularMovies() {
   const URL = [
-    tmdbURL,
+    TMDB_URL,
     "movie/popular?api_key=",
     key,
     "&language=en-US&page=1",
@@ -124,7 +115,7 @@ async function getPopularMovies() {
 
 export async function getMovieById(id, language) {
   const URL = [
-    tmdbURL,
+    TMDB_URL,
     "movie/",
     id,
     "?api_key=",

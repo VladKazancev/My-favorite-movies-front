@@ -15,6 +15,10 @@ module.exports = {
       },
       width: {
         45: "45%",
+        "30px": "30px",
+        "35px": "35px",
+        "45px": "45px",
+        "50px": "50px",
       },
       height: {
         350: "350px",

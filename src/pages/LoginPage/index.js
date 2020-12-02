@@ -7,8 +7,8 @@ import Submit from "./components/Submit";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { useHistory, Redirect } from "react-router-dom";
-import { checkUserData } from "../../utils";
-import { logo } from "../../consts";
+import { checkUserData } from "utils";
+import { LOGO } from "consts";
 
 export default function LoginPage() {
   const onSubmit = ({ email, password }) => {
@@ -22,7 +22,7 @@ export default function LoginPage() {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-b from-blackv2-start to-blackv2-end">
       <div className="p-16 bg-blackv2-form border border-gray-800 shadow-2xl rounded-2xl">
-        <img className="mb-5" src={logo} alt="Logo" />
+        <img className="mb-5" src={LOGO} alt="Logo" />
         <Form
           onSubmit={onSubmit}
           render={({ handleSubmit, submitError }) => (

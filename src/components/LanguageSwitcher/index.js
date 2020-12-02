@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import i18n from "i18next";
-import { flagRU, flagUK } from "../../consts";
+import { FLAG_RU, FLAG_UK } from "./consts";
 
 export default function LanguageSwitcher() {
   const [lng, setLng] = useState(i18n.language);
@@ -12,10 +12,9 @@ export default function LanguageSwitcher() {
   return (
     <img
       onClick={switchLanguage}
-      src={lng === "ru" ? flagUK : flagRU}
-      width="45px"
+      src={lng === "ru" ? FLAG_UK : FLAG_RU}
       alt="flag"
-      className="iconHover"
+      className="iconHover w-45px"
     />
   );
 }

@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  getFavorite,
-  addFavoriteMovies,
-  deleteFavoriteMovie,
-  markAsViewed,
-} from "../../../../utils";
-import classnames from "classnames";
+import { getFavorite, addFavoriteMovies, setFavoriteMoviesHelper } from "utils";
+import MoviesPanelContainer from "./styled";
 import { useTranslation } from "react-i18next";
 import MoviesPanelTitle from "../MoviesPanelTitle";
-import MovieViewWrapper from "../../../../components/MovieViewWrapper";
+import MovieViewWrapper from "components/MovieViewWrapper";
 
 export default function MoviesPanel() {
   const { t } = useTranslation("mainPage");
@@ -17,33 +12,25 @@ export default function MoviesPanel() {
   );
   const [viewMode, setViewMode] = useState("block");
   useEffect(() => {
-    if (!getFavorite("favoriteMovies").length) {
+    if (!Object.keys(getFavorite("favoriteMovies")).length) {
       // Временно, до разработки Search page
       addFavoriteMovies().then((data) => setFavoriteMovies(data));
     }
   }, []);
   const handleClickDeleteButton = (e) => {
     setFavoriteMovies(
-      deleteFavoriteMovie(favoriteMovies, e.currentTarget.value)
+      setFavoriteMoviesHelper(favoriteMovies, e.currentTarget.value, "delete")
     );
   };
   const handleClickConfirmButton = (e) => {
-    setFavoriteMovies(markAsViewed(favoriteMovies, e.currentTarget.value));
+    setFavoriteMovies(
+      setFavoriteMoviesHelper(favoriteMovies, e.currentTarget.value)
+    );
   };
   const handleClickToggleButton = (e) => {
     const name = e.target.name;
     if (viewMode !== name) setViewMode(name);
   };
-  const containerClassname = classnames(
-    "flex",
-    "w-full",
-    "rounded-2xl",
-    "bg-grayv2-main",
-    "p-4",
-    { "flex-col": viewMode === "list" },
-    { "justify-around": viewMode === "block" },
-    { "flex-wrap": viewMode === "block" }
-  );
   return (
     <div className="flex flex-col items-center my-16 w-9/12 ">
       <MoviesPanelTitle
@@ -52,17 +39,18 @@ export default function MoviesPanel() {
         viewMode={viewMode}
         onClickToggleButton={() => handleClickToggleButton}
       />
-      <div className={containerClassname}>
-        {favoriteMovies.map((current) => (
+      <MoviesPanelContainer viewMode={viewMode}>
+        {Object.keys(favoriteMovies).map((current) => (
           <MovieViewWrapper
-            key={current.id}
-            movie={current}
+            key={current}
+            movieId={current}
+            isViewed={favoriteMovies[current]}
             onClickDelete={() => handleClickDeleteButton}
             onClickConfirm={() => handleClickConfirmButton}
             viewMode={viewMode}
           />
         ))}
-      </div>
+      </MoviesPanelContainer>
     </div>
   );
 }

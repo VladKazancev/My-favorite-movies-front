@@ -1,30 +1,17 @@
 import React from "react";
-import classnames from "classnames";
 import ServiceButtons from "../ServiceButtons";
 import DisplayMovieInfoHelper from "../DisplayMovieInfoHelper";
-import { imageURL } from "../../consts";
-
+import { IMAGE_URL } from "consts";
+import BlockMovieViewContainer from "./styled";
 export default function BlockMovieView(props) {
   const [description, imageSrc] = [
     props.movieInfo,
-    imageURL + props.movieInfo.poster_path,
+    IMAGE_URL + props.movieInfo.poster_path,
   ];
-  const containerClassname = classnames(
-    "w-64",
-    "rounded-xl",
-    "transition",
-    "duration-300",
-    "relative",
-    "flex",
-    "flex-col",
-    "justify-end",
-    { "hover:shadow-movie": props.isActive },
-    { "opacity-45": !props.isActive }
-  );
   return (
     <div className="flex flex-col items-center mx-4 mt-3">
-      <div className={containerClassname}>
-        <img className="rounded-xl" src={imageSrc} />
+      <BlockMovieViewContainer isActive={props.isActive}>
+        <img className="rounded-xl" alt="filmImage" src={imageSrc} />
         <div className="absolute flex flex-col items-center text-lg text-beigev2 font-semibold py-3 rounded-b-xl opacity-95 w-full bg-blackv2-main">
           <div
             align="center"
@@ -38,7 +25,7 @@ export default function BlockMovieView(props) {
             viewMode="block"
           />
         </div>
-      </div>
+      </BlockMovieViewContainer>
       <ServiceButtons
         value={description.id}
         onClickConfirm={() => props.onClickConfirm()}

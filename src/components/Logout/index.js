@@ -1,5 +1,5 @@
 import React from "react";
-import { logout } from "../../consts";
+import { LOGOUT } from "./consts";
 import { useHistory } from "react-router-dom";
 
 export default function Logout() {
@@ -15,9 +15,8 @@ export default function Logout() {
       </div>
       <img
         onClick={handleClickLogout}
-        src={logout}
-        width="35px"
-        className="iconHover"
+        src={LOGOUT}
+        className="iconHover w-35px"
         alt="logout"
       />
     </div>

@@ -1,12 +1,3 @@
-export const logo = "./images/Logo.svg";
-export const flagRU = "./images/flagRU.svg";
-export const flagUK = "./images/flagUK.svg";
-export const logout = "./images/logout.svg";
-export const logoMain = "./images/Logo_main.svg";
-export const tableView = "./images/table_view.svg";
-export const listView = "./images/list_view.svg";
-export const confirmMovie = "./images/confirmMovie.svg";
-export const deleteMovie = "./images/deleteMovie.svg";
-export const ageLimit = "./images/age_limit.svg";
-export const imageURL = "https://image.tmdb.org/t/p/original";
-export const tmdbURL = "https://api.themoviedb.org/3/";
+export const LOGO = "./images/Logo.svg";
+export const IMAGE_URL = "https://image.tmdb.org/t/p/original";
+export const TMDB_URL = "https://api.themoviedb.org/3/";
