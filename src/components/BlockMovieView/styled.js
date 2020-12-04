@@ -1,20 +1,9 @@
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 
-const BlockMovieViewContainer = styled.div`
-  width: 16rem;
-  border-radius: 0.75rem;
-  transition-property: box-shadow, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  opacity: ${(props) => (props.isActive ? 1 : 0.45)};
-  &:hover {
-    box-shadow: ${(props) =>
-      props.isActive ? "1px 1px 10px 10px rgba(255,218,146,0.7)" : "none"};
-  }
-`;
+const BlockMovieViewContainer = styled.div(({ isActive }) => [
+  tw`flex flex-col justify-end w-64 rounded-xl`,
+  tw`transition duration-300 relative`,
+  isActive ? tw`hover:shadow-movie` : tw`opacity-45`,
+]);
 
 export default BlockMovieViewContainer;

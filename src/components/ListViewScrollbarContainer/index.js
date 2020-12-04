@@ -32,7 +32,7 @@ export default function ListViewScrollbarContainer(props) {
         />
         {productionCompaines ? (
           <p align="justify" className="redLine mb-2">
-            {t("production_companies")}
+            {t("production_companies") + " "}
             <span className="text-orange-500 ml-1">{productionCompaines}</span>
           </p>
         ) : (

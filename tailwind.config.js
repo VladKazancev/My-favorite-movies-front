@@ -11,7 +11,7 @@ module.exports = {
         95: ".95",
       },
       padding: {
-        five: "5px",
+        "5px": "5px",
       },
       width: {
         45: "45%",
@@ -28,6 +28,13 @@ module.exports = {
         82: ".82",
       },
       colors: {
+        gray: {
+          800: "#2D3748",
+        },
+        orange: {
+          400: "#F6AD55",
+          500: "#ED8936",
+        },
         blackv2: {
           start: "#0E0E0E",
           end: "#252525",

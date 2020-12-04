@@ -1,15 +1,8 @@
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 
-const MoviesPanelContainer = styled.div`
-  display: flex;
-  width: 100%;
-  border-radius: 1rem;
-  background-color: #c4c4c4;
-  padding: 1rem;
-  flex-direction: ${(props) => (props.viewMode === "list" ? "column" : "row")};
-  justify-content: ${(props) =>
-    props.viewMode === "block" ? "space-around" : "flex-start"};
-  flex-wrap: ${(props) => (props.viewMode === "block" ? "wrap" : "nowrap")};
-`;
+const MoviesPanelContainer = styled.div(({ viewMode }) => [
+  tw`flex w-full rounded-2xl bg-grayv2-main p-4`,
+  viewMode === "list" ? tw`flex-col` : tw`justify-around flex-wrap`,
+]);
 
 export default MoviesPanelContainer;
