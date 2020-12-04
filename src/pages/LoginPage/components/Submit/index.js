@@ -1,8 +1,7 @@
 import React from "react";
-import classnames from "classnames";
 
-export default function Error({ text }) {
-  const submitClassName = classnames(
+export default function Submit({ text }) {
+  const submitClassName = [
     "uppercase",
     "font-bold",
     "text-xl",
@@ -15,8 +14,8 @@ export default function Error({ text }) {
     "focus:outline-none",
     "hover:bg-orangev2-200",
     "transform",
-    "hover:scale-95"
-  );
+    "hover:scale-95",
+  ].join(" ");
   return (
     <button className={submitClassName} type="submit">
       {text}

@@ -4,3 +4,20 @@
 
 @tailwind utilities;
 
+.iconHover{
+  @apply transform;
+  @apply transition-scale;
+  @apply duration-300;
+}
+.iconHover:hover{
+  @apply scale-90;
+}
+.iconHover:focus{
+  @apply outline-none;
+}
+.redLine{
+  text-indent: 2rem;
+}
+.disabled{
+  pointer-events: none;
+}

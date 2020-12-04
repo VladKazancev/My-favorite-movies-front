@@ -1,0 +1,1 @@
+export const AGE_LIMIT = "./images/age_limit.svg";
