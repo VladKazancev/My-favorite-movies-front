@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { getFavorite, addFavoriteMovies, setFavoriteMoviesHelper } from "utils";
+import React, { useState } from "react";
+import { getFavorite, setFavoriteMoviesHelper } from "utils";
 import MoviesPanelContainer from "./styled";
 import { useTranslation } from "react-i18next";
 import MoviesPanelTitle from "../MoviesPanelTitle";
-import MovieViewWrapper from "components/MovieViewWrapper";
+import MovieViewWrapper from "../MovieViewWrapper";
+import useViewMode from "components/hooks/useViewMode";
 
 export default function MoviesPanel() {
   const { t } = useTranslation("mainPage");
   const [favoriteMovies, setFavoriteMovies] = useState(
     getFavorite("favoriteMovies")
   );
-  const [viewMode, setViewMode] = useState("block");
-  useEffect(() => {
-    if (!Object.keys(getFavorite("favoriteMovies")).length) {
-      // Временно, до разработки Search page
-      addFavoriteMovies().then((data) => setFavoriteMovies(data));
-    }
-  }, []);
+  const [viewMode, setViewMode] = useViewMode();
   const handleClickDeleteButton = (e) => {
     setFavoriteMovies(
       setFavoriteMoviesHelper(favoriteMovies, e.currentTarget.value, "delete")
@@ -27,20 +22,18 @@ export default function MoviesPanel() {
       setFavoriteMoviesHelper(favoriteMovies, e.currentTarget.value)
     );
   };
-  const handleClickToggleButton = (e) => {
-    const name = e.target.name;
-    if (viewMode !== name) setViewMode(name);
-  };
+  const moviesKeys = Object.keys(favoriteMovies);
   return (
     <div className="flex flex-col items-center my-16 w-9/12 ">
       <MoviesPanelTitle
         title={t("moviesPanelTitle")}
         buttonText={t("addButtonText")}
         viewMode={viewMode}
-        onClickToggleButton={() => handleClickToggleButton}
+        onClickToggleButton={setViewMode}
       />
-      <MoviesPanelContainer viewMode={viewMode}>
-        {Object.keys(favoriteMovies).map((current) => (
+      <MoviesPanelContainer length={moviesKeys.length} viewMode={viewMode}>
+        <div name="mainEmptyLabel">{t("emptyLabel")}</div>
+        {moviesKeys.map((current) => (
           <MovieViewWrapper
             key={current}
             movieId={current}

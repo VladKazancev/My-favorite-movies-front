@@ -1,5 +1,4 @@
 import React from "react";
-import ServiceButtons from "../ServiceButtons";
 import ListMovieViewContainer from "./styled";
 import ListViewScrollbarContainer from "../ListViewScrollbarContainer";
 import { IMAGE_URL } from "consts";
@@ -26,11 +25,7 @@ export default function ListMovieView(props) {
         </div>
         <ListViewScrollbarContainer description={description} />
       </ListMovieViewContainer>
-      <ServiceButtons
-        value={description.id}
-        onClickConfirm={() => props.onClickConfirm()}
-        onClickDelete={() => props.onClickDelete()}
-      />
+      {props.children}
     </div>
   );
 }

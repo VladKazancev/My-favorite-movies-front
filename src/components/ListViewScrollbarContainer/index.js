@@ -6,7 +6,10 @@ import { ucFirst } from "utils";
 
 export default function ListViewScrollbarContainer(props) {
   const { t } = useTranslation("moviesInfo");
-  const description = props.description;
+  const [description, compaines] = [
+    props.description,
+    props.description.production_companies,
+  ];
   const genres = description.genres.map((current, index) => (
     <div
       key={index}
@@ -15,9 +18,9 @@ export default function ListViewScrollbarContainer(props) {
       {ucFirst(current.name)}
     </div>
   ));
-  const productionCompaines = description.production_companies
-    .map((current) => current.name)
-    .join(", ");
+  const productionCompaines = compaines
+    ? compaines.map((current) => current.name).join(", ")
+    : null;
   return (
     <Scrollbar>
       <div className="flex text-beigev2 font-semibold text-lg flex-col items-center py-3 px-8">

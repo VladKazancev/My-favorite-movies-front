@@ -9,7 +9,8 @@
   "mainPage": {
     "tagsCloudTitle": "Выберите ваши любимые жанры",
     "moviesPanelTitle": "Ваши любимые фильмы",
-    "addButtonText": "Добавить"
+    "addButtonText": "Добавить",
+    "emptyLabel": "Список пуст"
   },
   "other": {
     "title": "Мои Любимые Фильмы",
@@ -42,5 +43,13 @@
     "releaseDate": "Дата выхода:",
     "rating": "Рейтинг:",
     "production_companies": "Компании - разработчики:"
+  },
+  "searchPage": {
+    "releaseYear": "Год выхода",
+    "rating": "Рейтинг",
+    "title": "Параметры поиска фильмов",
+    "add": "Добавить",
+    "addToFavorite": "Добавить в избранное",
+    "emptyLabel": "Ничего не найдено"
   }
 }

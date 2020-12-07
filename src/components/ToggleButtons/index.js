@@ -8,13 +8,13 @@ export default function ToggleButtons(props) {
       <img
         name="block"
         alt="tableView"
-        onClick={props.onClickToggleButton()}
+        onClick={props.onClickToggleButton}
         src={TABLE_VIEW}
       />
       <img
         name="list"
         alt="listView"
-        onClick={props.onClickToggleButton()}
+        onClick={props.onClickToggleButton}
         src={LIST_VIEW}
       />
     </ToggleButtonsContainer>

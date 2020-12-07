@@ -16,7 +16,7 @@ export default function MoviesPanelTitle(props) {
         </AddButton>
         <ToggleButtons
           viewMode={props.viewMode}
-          onClickToggleButton={() => props.onClickToggleButton()}
+          onClickToggleButton={props.onClickToggleButton}
         />
       </div>
     </div>

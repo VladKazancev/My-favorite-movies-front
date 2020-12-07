@@ -6,6 +6,9 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
+      borderWidth: {
+        3: "3px",
+      },
       opacity: {
         45: ".45",
         95: ".95",
@@ -15,10 +18,13 @@ module.exports = {
       },
       width: {
         45: "45%",
+        "24px": "24px",
         "30px": "30px",
         "35px": "35px",
         "45px": "45px",
         "50px": "50px",
+        "250px": "250px",
+        "600px": "600px",
       },
       height: {
         350: "350px",
@@ -32,6 +38,7 @@ module.exports = {
           800: "#2D3748",
         },
         orange: {
+          300: "#FBD38D",
           400: "#F6AD55",
           500: "#ED8936",
         },
@@ -50,6 +57,7 @@ module.exports = {
           main: "#C4C4C4",
         },
         beigev2: "#FFDA92",
+        beige: "#FECB8D",
       },
       transitionProperty: {
         scale: "transform, background-color",
@@ -63,10 +71,15 @@ module.exports = {
         ring: "0px 0px 0px 4px rgba(217,217,217,0.3)",
         add: "1px 1px 19px 10px rgba(255,218,146,0.35)",
         service: "0px 0px 10px 10px rgba(255,218,146,0.3)",
+        yearSelect: "0px 0px 11px 4px rgba(255,218,146,0.3)",
         movie: "1px 1px 10px 10px rgba(255,218,146,0.7)",
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      boxShadow: ["active"],
+    },
+  },
   plugins: [],
 };

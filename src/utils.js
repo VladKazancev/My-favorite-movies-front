@@ -40,13 +40,13 @@ export function addUsers() {
         {
           email: "Kazancev@yandex.ru",
           password: "password",
-          favoriteGenres: [],
+          favoriteGenres: {},
           favoriteMovies: {},
         },
         {
           email: "Database@mail.ru",
           password: "password1",
-          favoriteGenres: [],
+          favoriteGenres: {},
           favoriteMovies: {},
         },
       ])
@@ -78,14 +78,10 @@ function setUserData(key, value) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
-export async function addFavoriteMovies() {
-  const favoriteMovies = {};
-  let popularMovies = await getPopularMovies();
-  popularMovies.results.forEach((current) => {
-    favoriteMovies[current.id] = false;
-  });
+export function addFavoriteMovie(id) {
+  const favoriteMovies = getFavorite("favoriteMovies");
+  favoriteMovies[id] = false;
   setUserData("favoriteMovies", favoriteMovies);
-  return favoriteMovies;
 }
 
 export function setFavoriteMoviesHelper(favoriteMovies, id, deleteMovie) {
@@ -96,21 +92,11 @@ export function setFavoriteMoviesHelper(favoriteMovies, id, deleteMovie) {
   return updatedMovies;
 }
 
-export function setFavoriteGenres(genre, isFavorite) {
-  let favoriteGenres = isFavorite
-    ? getFavorite("favoriteGenres").filter((item) => genre !== item)
-    : getFavorite("favoriteGenres").concat(genre);
+export function setFavoriteGenres(id, text, isFavorite) {
+  const favoriteGenres = getFavorite("favoriteGenres");
+  if (isFavorite) delete favoriteGenres[id];
+  else favoriteGenres[id] = text;
   setUserData("favoriteGenres", favoriteGenres);
-}
-
-async function getPopularMovies() {
-  const URL = [
-    TMDB_URL,
-    "movie/popular?api_key=",
-    key,
-    "&language=en-US&page=1",
-  ].join("");
-  return getResponse(URL);
 }
 
 export async function getMovieById(id, language) {
@@ -124,4 +110,46 @@ export async function getMovieById(id, language) {
     language,
   ].join("");
   return getResponse(URL);
+}
+
+export async function getFilteredMovies(language, page, queryKeys) {
+  const formatedGenres = queryKeys.selectedGenres.join("%2C%20");
+  const URL = [
+    TMDB_URL,
+    "discover/movie/?api_key=",
+    key,
+    "&language=",
+    language,
+    "&include_adult=true&sort_by=popularity.desc&page=",
+    page,
+    "&primary_release_year=",
+    queryKeys.releaseYear,
+    "&vote_average.gte=",
+    queryKeys.rating,
+    "&with_genres=",
+    formatedGenres,
+  ].join("");
+  return getResponse(URL);
+}
+
+export function makeYearsList() {
+  const array = [];
+  for (let i = 2020; i >= 1950; i--) array.push({ value: i, label: i });
+  return array;
+}
+
+export function setFilteredGenres(selectedGenres, id, isActive) {
+  const updatedSelectedGenres = isActive
+    ? selectedGenres.filter((current) => current !== id)
+    : selectedGenres.concat([id]);
+  return updatedSelectedGenres;
+}
+
+export function formatingGenres(moviesInfo, genresFromAPI) {
+  return moviesInfo.map((current) => {
+    current["genres"] = current.genre_ids.map((actual) => ({
+      name: genresFromAPI[actual],
+    }));
+    return current;
+  });
 }
