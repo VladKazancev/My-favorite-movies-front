@@ -6,7 +6,7 @@ import { ucFirst } from "utils";
 
 export default function ListViewScrollbarContainer(props) {
   const { t } = useTranslation("moviesInfo");
-  const [description, compaines] = [
+  const [description, companies] = [
     props.description,
     props.description.production_companies,
   ];
@@ -18,8 +18,8 @@ export default function ListViewScrollbarContainer(props) {
       {ucFirst(current.name)}
     </div>
   ));
-  const productionCompaines = compaines
-    ? compaines.map((current) => current.name).join(", ")
+  const productionCompanies = companies
+    ? companies.map((current) => current.name).join(", ")
     : null;
   return (
     <Scrollbar>
@@ -31,12 +31,11 @@ export default function ListViewScrollbarContainer(props) {
         <DisplayMovieInfoHelper
           releaseDate={description.release_date}
           voteAverage={description.vote_average}
-          viewMode="list"
         />
-        {productionCompaines ? (
+        {productionCompanies ? (
           <p align="justify" className="redLine mb-2">
             {t("production_companies") + " "}
-            <span className="text-orange-500 ml-1">{productionCompaines}</span>
+            <span className="text-orange-500 ml-1">{productionCompanies}</span>
           </p>
         ) : (
           <></>

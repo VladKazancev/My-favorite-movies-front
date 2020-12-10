@@ -4,14 +4,13 @@ import MoviesPanelContainer from "./styled";
 import { useTranslation } from "react-i18next";
 import MoviesPanelTitle from "../MoviesPanelTitle";
 import MovieViewWrapper from "../MovieViewWrapper";
-import useViewMode from "components/hooks/useViewMode";
 
 export default function MoviesPanel() {
   const { t } = useTranslation("mainPage");
   const [favoriteMovies, setFavoriteMovies] = useState(
     getFavorite("favoriteMovies")
   );
-  const [viewMode, setViewMode] = useViewMode();
+  const [isBlockView, setIsBlockView] = useState(true);
   const handleClickDeleteButton = (e) => {
     setFavoriteMovies(
       setFavoriteMoviesHelper(favoriteMovies, e.currentTarget.value, "delete")
@@ -28,10 +27,13 @@ export default function MoviesPanel() {
       <MoviesPanelTitle
         title={t("moviesPanelTitle")}
         buttonText={t("addButtonText")}
-        viewMode={viewMode}
-        onClickToggleButton={setViewMode}
+        isBlockView={isBlockView}
+        onClickToggleButton={setIsBlockView}
       />
-      <MoviesPanelContainer length={moviesKeys.length} viewMode={viewMode}>
+      <MoviesPanelContainer
+        length={moviesKeys.length}
+        isBlockView={isBlockView}
+      >
         <div name="mainEmptyLabel">{t("emptyLabel")}</div>
         {moviesKeys.map((current) => (
           <MovieViewWrapper
@@ -40,7 +42,7 @@ export default function MoviesPanel() {
             isViewed={favoriteMovies[current]}
             onClickDelete={() => handleClickDeleteButton}
             onClickConfirm={() => handleClickConfirmButton}
-            viewMode={viewMode}
+            isBlockView={isBlockView}
           />
         ))}
       </MoviesPanelContainer>

@@ -7,10 +7,10 @@ const ToggleButtonsContainer = styled.div`
   }
   img[name="block"] {
     ${tw`ml-2 mr-4`}
-    ${({ viewMode }) => viewMode === "list" && tw`scale-82`}
+    ${({ isBlockView }) => !isBlockView && tw`scale-82`}
   }
   img[name="list"] {
-    ${({ viewMode }) => viewMode === "block" && tw`scale-82`}
+    ${({ isBlockView }) => isBlockView && tw`scale-82`}
   }
 `;
 

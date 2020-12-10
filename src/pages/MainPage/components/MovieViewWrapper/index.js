@@ -5,18 +5,18 @@ import ServiceButtons from "components/ServiceButtons";
 import MovieView from "components/MovieView";
 
 export default function MovieViewWrapper(props) {
-  const isActive = !props.isViewed;
+  const { isViewed, isBlockView, movieId } = props;
   const [movieInfo, setMovieInfo] = useState();
   useEffect(() => {
     const lng = i18n.language === "en" ? "en-US" : "ru";
-    getMovieById(props.movieId, lng).then((data) => setMovieInfo(data));
+    getMovieById(movieId, lng).then((data) => setMovieInfo(data));
   }, [i18n.language]);
-  if (!movieInfo) return <></>;
+  if (!movieInfo) return null;
   return (
     <MovieView
       movieInfo={movieInfo}
-      viewMode={props.viewMode}
-      isActive={isActive}
+      isBlockView={isBlockView}
+      isActive={!isViewed}
     >
       <ServiceButtons
         value={movieInfo.id}

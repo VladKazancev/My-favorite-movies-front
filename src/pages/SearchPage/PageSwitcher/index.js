@@ -3,12 +3,9 @@ import { NEXT_PAGE, PREVIOUS_PAGE } from "./consts";
 import PageSwitcherContainer from "./styled";
 
 export default function PageSwitcher(props) {
-  const actualPage = props.actualPage;
+  const { actualPage, isNextPage } = props;
   return (
-    <PageSwitcherContainer
-      isNextPage={props.isNextPage}
-      actualPage={actualPage}
-    >
+    <PageSwitcherContainer isNextPage={isNextPage} actualPage={actualPage}>
       <img
         onClick={(e) => props.setPage(actualPage - 1)}
         name="left"

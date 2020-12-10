@@ -7,7 +7,7 @@ import FiltersContainer from "./styled";
 import { setFilteredGenres } from "utils";
 
 export default function Filters(props) {
-  const [queryKeys, genresFromApi] = [props.queryKeys, props.genresFromApi];
+  const { queryKeys, genresFromApi } = props;
   const { t } = useTranslation("searchPage");
   const [rating, setRating] = useState(queryKeys.rating);
   const [releaseYear, setReleaseYear] = useState(queryKeys.releaseYear);
