@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginPage from "pages/LoginPage";
 import MainPage from "pages/MainPage";
+import SearchPage from "pages/SearchPage";
 import "localization";
 import "styles/tailwindcss.css";
 import { addUsers, htmlLocalization } from "utils";
@@ -16,6 +17,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <Route path="/main" component={MainPage} />
+        <Route path="/search" component={SearchPage} />
       </Switch>
     </BrowserRouter>
   );

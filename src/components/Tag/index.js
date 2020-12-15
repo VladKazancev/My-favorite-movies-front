@@ -3,21 +3,17 @@ import { useTranslation } from "react-i18next";
 import StyledTag from "./styled";
 import { getFavorite, setFavoriteGenres } from "utils";
 
-export default function Tag({ text }) {
+export default function Tag({ text, id }) {
   const [isActive, setActivity] = useState(
-    getFavorite("favoriteGenres").includes(text)
+    Boolean(getFavorite("favoriteGenres")[id])
   );
   const { t } = useTranslation("genres");
-  const handleClickTag = (e) => {
-    setFavoriteGenres(e.target.value, isActive);
+  const handleClickTag = () => {
+    setFavoriteGenres(id, text, isActive);
     setActivity(!isActive);
   };
   return (
-    <StyledTag
-      isActive={isActive}
-      value={text}
-      onClick={(e) => handleClickTag(e)}
-    >
+    <StyledTag isActive={isActive} onClick={() => handleClickTag()}>
       {t(text)}
     </StyledTag>
   );

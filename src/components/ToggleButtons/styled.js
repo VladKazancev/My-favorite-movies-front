@@ -1,24 +1,16 @@
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 
 const ToggleButtonsContainer = styled.div`
-  display: flex;
-  width: 33.33333%;
-  justify-content: space-between;
+  ${tw`flex w-1/3 justify-between`}
   img {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-    width: 30px;
+    ${tw`transform transition-transform duration-300 w-30px`}
   }
   img[name="block"] {
-    margin-left: 0.5rem;
-    margin-right: 1rem;
-    transform: ${(props) =>
-      props.viewMode === "list" ? "scale(0.82)" : "none"};
+    ${tw`ml-2 mr-4`}
+    ${({ isBlockView }) => !isBlockView && tw`scale-82`}
   }
   img[name="list"] {
-    transform: ${(props) =>
-      props.viewMode === "block" ? "scale(0.82)" : "none"};
+    ${({ isBlockView }) => isBlockView && tw`scale-82`}
   }
 `;
 

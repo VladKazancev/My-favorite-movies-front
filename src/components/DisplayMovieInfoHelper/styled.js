@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 
-const DisplayContainer = styled.div`
-  display: flex;
-  margin-right: 0.25rem;
-  margin-bottom: ${(props) => (props.viewMode === "list" ? "0.5rem" : "0")};
-`;
+const DisplayContainer = styled.div(({ isBlockView }) => [
+  tw`flex mr-1`,
+  !isBlockView && tw`mb-2`,
+]);
 
 export default DisplayContainer;

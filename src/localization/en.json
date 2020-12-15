@@ -9,7 +9,8 @@
   "mainPage": {
     "tagsCloudTitle": "Select your favorite genres",
     "moviesPanelTitle": "Your favorite movies",
-    "addButtonText": "Add"
+    "addButtonText": "Add",
+    "emptyLabel": "List Is Empty"
   },
   "other": {
     "title": "My Favorite Movies",
@@ -41,5 +42,13 @@
     "releaseDate": "Release date:",
     "rating": "Rating:",
     "production_companies": "Production companies:"
+  },
+  "searchPage": {
+    "releaseYear": "Release Year",
+    "rating": "Rating",
+    "title": "Movies Search Options",
+    "add": "Add",
+    "addToFavorite": "Add To Favorite",
+    "emptyLabel": "Nothing Found"
   }
 }

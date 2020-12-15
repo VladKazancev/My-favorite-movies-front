@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import DisplayMovieInfoHelper from "../DisplayMovieInfoHelper";
 import { ucFirst } from "utils";
 
-export default function ListViewScrollbarContainer(props) {
+export default function ListViewScrollbarContainer({ description }) {
   const { t } = useTranslation("moviesInfo");
-  const description = props.description;
+  const companies = description.production_companies;
   const genres = description.genres.map((current, index) => (
     <div
       key={index}
@@ -15,9 +15,9 @@ export default function ListViewScrollbarContainer(props) {
       {ucFirst(current.name)}
     </div>
   ));
-  const productionCompaines = description.production_companies
-    .map((current) => current.name)
-    .join(", ");
+  const productionCompanies = companies
+    ? companies.map((current) => current.name).join(", ")
+    : null;
   return (
     <Scrollbar>
       <div className="flex text-beigev2 font-semibold text-lg flex-col items-center py-3 px-8">
@@ -28,12 +28,11 @@ export default function ListViewScrollbarContainer(props) {
         <DisplayMovieInfoHelper
           releaseDate={description.release_date}
           voteAverage={description.vote_average}
-          viewMode="list"
         />
-        {productionCompaines ? (
+        {productionCompanies ? (
           <p align="justify" className="redLine mb-2">
-            {t("production_companies")}
-            <span className="text-orange-500 ml-1">{productionCompaines}</span>
+            {t("production_companies") + " "}
+            <span className="text-orange-500 ml-1">{productionCompanies}</span>
           </p>
         ) : (
           <></>

@@ -2,17 +2,21 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import DisplayContainer from "./styled";
 
-export default function DisplayMovieInfoHelper(props) {
+export default function DisplayMovieInfoHelper({
+  isBlockView,
+  voteAverage,
+  releaseDate,
+}) {
   const { t } = useTranslation("moviesInfo");
   return (
     <>
-      <DisplayContainer viewMode={props.viewMode}>
+      <DisplayContainer isBlockView={isBlockView}>
         <div className="mr-1">{t("releaseDate")}</div>
-        <div className="text-orange-500">{props.releaseDate}</div>
+        <div className="text-orange-500">{releaseDate}</div>
       </DisplayContainer>
-      <DisplayContainer viewMode={props.viewMode}>
+      <DisplayContainer isBlockView={isBlockView}>
         <div className="mr-1">{t("rating")}</div>
-        <div className="text-orange-500">{props.voteAverage}</div>
+        <div className="text-orange-500">{voteAverage}</div>
       </DisplayContainer>
     </>
   );
