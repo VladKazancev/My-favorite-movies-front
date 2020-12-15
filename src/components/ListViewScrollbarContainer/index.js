@@ -4,12 +4,9 @@ import { useTranslation } from "react-i18next";
 import DisplayMovieInfoHelper from "../DisplayMovieInfoHelper";
 import { ucFirst } from "utils";
 
-export default function ListViewScrollbarContainer(props) {
+export default function ListViewScrollbarContainer({ description }) {
   const { t } = useTranslation("moviesInfo");
-  const [description, companies] = [
-    props.description,
-    props.description.production_companies,
-  ];
+  const companies = description.production_companies;
   const genres = description.genres.map((current, index) => (
     <div
       key={index}
