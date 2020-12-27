@@ -1,18 +1,24 @@
 import React from "react";
+import { useApolloClient } from "@apollo/client";
 import { LOGOUT } from "./consts";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "apolloClient/queries";
 
 export default function Logout() {
   const history = useHistory();
+  const client = useApolloClient();
+  const { loading, data } = useQuery(GET_USER);
   const handleClickLogout = () => {
-    localStorage.removeItem("currentUser");
-    history.push("/");
+    client.clearStore().then(() => {
+      localStorage.removeItem("JWT");
+      history.push("/");
+    });
   };
+  if (loading) return null;
   return (
     <div className="flex items-center">
-      <div className=" text-purple-100 text-xl mr-4">
-        {localStorage.getItem("currentUser")}
-      </div>
+      <div className=" text-purple-100 text-xl mr-4">{data.user.email}</div>
       <img
         onClick={handleClickLogout}
         src={LOGOUT}

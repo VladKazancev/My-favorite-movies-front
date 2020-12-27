@@ -1,16 +1,9 @@
-import { useState, useEffect } from "react";
-import { getGenres } from "utils";
+import { useQuery } from "@apollo/client";
+import { GET_GENRES } from "apolloClient/queries";
 
-export default function useGenres(lng = "en-US") {
-  const [genres, setGenres] = useState({});
-  useEffect(() => {
-    getGenres(lng).then((data) => {
-      const genresFromAPI = {};
-      data.genres.forEach((current) => {
-        genresFromAPI[current.id] = current.name;
-      });
-      setGenres(genresFromAPI);
-    });
-  }, [lng]);
-  return genres;
+export default function useGenres(language = "en-US") {
+  const { loading, data } = useQuery(GET_GENRES, {
+    variables: { language },
+  });
+  return loading ? [] : data.genres;
 }
