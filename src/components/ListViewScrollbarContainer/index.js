@@ -15,9 +15,7 @@ export default function ListViewScrollbarContainer({ description }) {
       {ucFirst(current.name)}
     </div>
   ));
-  const productionCompanies = companies
-    ? companies.map((current) => current.name).join(", ")
-    : null;
+  const productionCompanies = companies ? companies.join(", ") : null;
   return (
     <Scrollbar>
       <div className="flex text-beigev2 font-semibold text-lg flex-col items-center py-3 px-8">

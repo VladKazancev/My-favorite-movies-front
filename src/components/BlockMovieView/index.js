@@ -1,11 +1,10 @@
 import React from "react";
 import DisplayMovieInfoHelper from "../DisplayMovieInfoHelper";
-import { IMAGE_URL } from "consts";
 import BlockMovieViewContainer from "./styled";
 
 export default function BlockMovieView(props) {
   const { movieInfo, isActive } = props;
-  const imageSrc = IMAGE_URL + movieInfo.poster_path;
+  const imageSrc = process.env.REACT_APP_IMAGE_URL + movieInfo.poster_path;
   return (
     <div className="flex flex-col items-center justify-center mx-4 mt-3">
       <BlockMovieViewContainer isActive={isActive}>

@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@apollo/client";
+import { SET_FAVORITE_GENRES } from "api/mutations/favoriteGenre";
 import StyledTag from "./styled";
-import { getFavorite, setFavoriteGenres } from "utils";
 
-export default function Tag({ text, id }) {
-  const [isActive, setActivity] = useState(
-    Boolean(getFavorite("favoriteGenres")[id])
-  );
+export default function Tag(props) {
+  const { name, genreId, isFavorite } = props;
+  const [setFavoriteGenres] = useMutation(SET_FAVORITE_GENRES, {
+    variables: { genreId },
+    onCompleted: props.updateFavoriteGenres,
+  });
   const { t } = useTranslation("genres");
-  const handleClickTag = () => {
-    setFavoriteGenres(id, text, isActive);
-    setActivity(!isActive);
-  };
   return (
-    <StyledTag isActive={isActive} onClick={() => handleClickTag()}>
-      {t(text)}
+    <StyledTag isActive={isFavorite} onClick={setFavoriteGenres}>
+      {t(name)}
     </StyledTag>
   );
 }
