@@ -3,7 +3,7 @@ import { useApolloClient } from "@apollo/client";
 import { LOGOUT } from "./consts";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_USER } from "apolloClient/queries";
+import { GET_USER } from "api/queries/user";
 
 export default function Logout() {
   const history = useHistory();

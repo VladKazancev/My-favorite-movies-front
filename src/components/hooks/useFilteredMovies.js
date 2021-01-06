@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_FILTERED_MOVIES } from "apolloClient/queries";
+import { GET_FILTERED_MOVIES } from "api/queries/movie";
 import { formatingGenres } from "utils";
 
 export default function useFilteredMovies(language, page, queryKeys, genres) {

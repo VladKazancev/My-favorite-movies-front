@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@apollo/client";
-import { SET_FAVORITE_GENRES } from "apolloClient/mutations";
+import { SET_FAVORITE_GENRES } from "api/mutations/favoriteGenre";
 import StyledTag from "./styled";
 
 export default function Tag(props) {

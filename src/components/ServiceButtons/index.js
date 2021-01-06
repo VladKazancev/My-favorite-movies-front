@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
 import useFavoriteMoviesMutation from "components/hooks/useFavoriteMoviesMutation";
-import { SET_IS_FAVORITE_MOVIE_VIEWED } from "apolloClient/mutations";
+import { SET_IS_FAVORITE_MOVIE_VIEWED } from "api/mutations/favoriteMovie";
 import { DELETE_MOVIE, CONFIRM_MOVIE } from "./consts";
 
 export default function ServiceButtons({ movieId, updateFavoriteMovies }) {

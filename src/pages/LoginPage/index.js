@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
 import { useMutation } from "@apollo/client";
-import { LOGIN } from "apolloClient/mutations";
+import { LOGIN } from "api/mutations/user";
 import Input from "./components/Input";
 import Error from "./components/Error";
 import Submit from "./components/Submit";
