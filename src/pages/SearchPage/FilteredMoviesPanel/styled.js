@@ -12,7 +12,7 @@ const FilteredMoviesPanelContainer = styled.div`
   }
   div[name="searchEmptyLabel"] {
     ${tw`text-2xl text-center font-semibold text-gray-800`}
-    ${({ length }) => length && tw`hidden`}
+    ${({ length, moviesLoading }) => (length || moviesLoading) && tw`hidden`}
   }
 `;
 

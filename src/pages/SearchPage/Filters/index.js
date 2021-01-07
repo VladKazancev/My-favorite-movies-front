@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Genre from "../Genre";
+import Genres from "../Genres";
 import CustomSlider from "../CustomSlider";
 import CustomSelect from "../CustomSelect";
 import FiltersContainer from "./styled";
@@ -29,16 +29,11 @@ export default function Filters(props) {
   return (
     <FiltersContainer>
       <div name="filtersTitle">{t("title")}</div>
-      <div name="filtersGenres">
-        {Object.keys(genresFromApi).map((current, index) => (
-          <Genre
-            onChangeSelectedGenres={handleChangeSelectedGenres}
-            key={index}
-            id={current}
-            text={genresFromApi[current]}
-          />
-        ))}
-      </div>
+      <Genres
+        genresFromApi={genresFromApi}
+        selectedGenres={selectedGenres}
+        onChangeSelectedGenres={handleChangeSelectedGenres}
+      />
       <div name="filtersMain">
         <CustomSlider
           onChangeRating={(actualRating) => setRating(actualRating)}

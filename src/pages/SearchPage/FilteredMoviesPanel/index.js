@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import ToggleButtons from "components/ToggleButtons";
+import useFavoriteMovies from "components/hooks/useFavoriteMovies";
 import SearchMovieViewWrapper from "../SearchMovieViewWrapper";
 import PageSwitcher from "../PageSwitcher";
 import FilteredMoviesPanelContainer from "./styled";
 import { useTranslation } from "react-i18next";
 
 export default function FilteredMoviesPanel(props) {
+  const { favoriteMovies, refetch } = useFavoriteMovies();
   const [isBlockView, setIsBlockView] = useState(true);
   const { t } = useTranslation("searchPage");
-  const { actualPage, isNextPage, moviesInfo } = props;
-  if (!moviesInfo) return null;
+  const { actualPage, isNextPage, moviesInfo, moviesLoading } = props;
   return (
     <FilteredMoviesPanelContainer
       length={moviesInfo.length}
       isBlockView={isBlockView}
+      moviesLoading={moviesLoading}
     >
       <div name="searchTitle">
         <PageSwitcher
@@ -28,13 +30,20 @@ export default function FilteredMoviesPanel(props) {
       </div>
       <div name="searchPanel">
         <div name="searchEmptyLabel">{t("emptyLabel")}</div>
-        {moviesInfo.map((current) => (
-          <SearchMovieViewWrapper
-            key={current.id}
-            movieInfo={current}
-            isBlockView={isBlockView}
-          />
-        ))}
+        {moviesInfo.map((current) => {
+          const isFavorite = favoriteMovies.some(
+            ({ movieId }) => current.id === movieId
+          );
+          return (
+            <SearchMovieViewWrapper
+              key={current.id}
+              movieInfo={current}
+              isBlockView={isBlockView}
+              isFavorite={isFavorite}
+              updateFavoriteMovies={() => refetch()}
+            />
+          );
+        })}
       </div>
     </FilteredMoviesPanelContainer>
   );
