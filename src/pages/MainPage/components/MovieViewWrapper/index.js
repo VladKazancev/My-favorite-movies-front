@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import i18n from "i18next";
-import { getMovieById } from "utils";
+import { useQuery } from "@apollo/client";
+import { GET_MOVIE_BY_ID } from "api/queries/movie";
 import ServiceButtons from "components/ServiceButtons";
 import MovieView from "components/MovieView";
 
 export default function MovieViewWrapper(props) {
-  const { isViewed, isBlockView, movieId } = props;
-  const [movieInfo, setMovieInfo] = useState();
-  useEffect(() => {
-    const lng = i18n.language === "en" ? "en-US" : "ru";
-    getMovieById(movieId, lng).then((data) => setMovieInfo(data));
-  }, [i18n.language]);
-  if (!movieInfo) return null;
+  const { isViewed, isBlockView, movieId, updateFavoriteMovies } = props;
+  const { loading, data } = useQuery(GET_MOVIE_BY_ID, {
+    variables: { movieId, language: i18n.language },
+  });
+  if (loading) return null;
   return (
     <MovieView
-      movieInfo={movieInfo}
+      movieInfo={data.movie}
       isBlockView={isBlockView}
       isActive={!isViewed}
     >
       <ServiceButtons
-        value={movieInfo.id}
-        onClickConfirm={() => props.onClickConfirm()}
-        onClickDelete={() => props.onClickDelete()}
+        movieId={movieId}
+        updateFavoriteMovies={updateFavoriteMovies}
       />
     </MovieView>
   );
